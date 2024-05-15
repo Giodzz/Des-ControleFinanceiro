@@ -24,17 +24,6 @@ Com o ambiente virtual ativado, instale as dependências do projeto com o comand
 pip install -r requirements.txt
 ```
 
-## Configuração Inicial
-Antes de executar o projeto pela primeira vez, você precisará realizar as migrações do banco de dados 
-```
-python manage.py migrate
-```
-Para criar um superusuário administrador, execute:
-```
-python manage.py createsuperuser
-```
-Siga as instruções no terminal para configurar o usuário administrador.
-
 ## Executando o Servidor de Desenvolvimento
 Para iniciar o servidor de desenvolvimento do Django, use o comando:
 ```
