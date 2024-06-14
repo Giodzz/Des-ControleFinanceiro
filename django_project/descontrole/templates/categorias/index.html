@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Des-Controle Financeiro</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"">
+</head>
+<body>
+    <header>
+        <div class=" logo">
+    <h1>De$-Controle</h1>
+    <h2>Financeiro</h2>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categoria</a></li>
+            <li><a href="#">Evento</a></li>
+            <li><a href="#">Consulta</a></li>
+        </ul>
+    </nav>
+    </header>
+    <main>
+        <section class="form-section">
+            <div class="form-container">
+                <form>
+                    <label for="categoria-id">Categoria ID</label>
+                    <input type="text" id="categoria-id" placeholder="10 dígitos - automático" disabled>
+
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" maxlength="20" placeholder="20 caracteres">
+
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" maxlength="150" placeholder="150 caracteres"></textarea>
+
+                    <p class="error-message">* Categoria não encontrada</p>
+                </form>
+                <div class="buttons">
+                    <button type="button">Novo</button>
+                    <button type="button">Editar</button>
+                    <button type="button">Deletar</button>
+                </div>
+            </div>
+        </section>
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cat ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Categorias -->
+                </tbody>
+            </table>
+            <button type="button" class="export-button">Exportar</button>
+        </section>
+    </main>
+    </body>
+
+</html>
