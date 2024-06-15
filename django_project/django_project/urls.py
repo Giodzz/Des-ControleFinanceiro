@@ -16,10 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
 
-app_name = "descontrole"
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('categorias/', views.categorias_index, name='categorias_index'),
 ]
