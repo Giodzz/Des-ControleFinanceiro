@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'descontrole.apps.DescontroleConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,10 +77,10 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dcfdatabase',
-        'USER': 'dcfuser',
-        'PASSWORD': 'dcfkey',
-        'HOST': 'hasmainserver.duckdns.org',
+        'NAME': 'djangoproject',
+        'USER': 'root',
+        'PASSWORD': 'Admin@123',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
