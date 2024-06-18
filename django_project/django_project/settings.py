@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangoproject',
-        'USER': 'root',
-        'PASSWORD': 'Admin@123',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'dcfdb',
+        'USER': 'dcfuser',
+        'PASSWORD': 'dcfkey',
+        'HOST': 'hassv.duckdns.org',
+        'PORT': '3306',
     }
 }
 
@@ -108,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
