@@ -26,15 +26,15 @@
     <main>
         <section class="form-section">
             <div class="form-container">
-                <form>
+                <form action="", method="post">
                     <label for="categoria-id">Categoria ID</label>
                     <input type="text" id="categoria-id" placeholder="10 dígitos - automático" disabled>
 
                     <label for="nome">Nome</label>
-                    <input type="text" id="nome" maxlength="20" placeholder="20 caracteres">
+                    <input type="text" name="nome" id="nome" maxlength="20" placeholder="20 caracteres">
 
                     <label for="descricao">Descrição</label>
-                    <textarea id="descricao" maxlength="150" placeholder="150 caracteres"></textarea>
+                    <textarea name="descricao" id="descricao" maxlength="150" placeholder="150 caracteres"></textarea>
 
                     <p class="error-message">* Categoria não encontrada</p>
                 </form>
