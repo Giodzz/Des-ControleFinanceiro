@@ -4,5 +4,5 @@ from . import views
 app_name = "descontrole"
 
 urlpatterns = [
-    path('categorias', views.categorias, name='categorias')
+    path('categorias/', views.categorias, name='categorias')
 ]
