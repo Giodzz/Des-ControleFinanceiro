@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dcfdb',
-        'USER': 'dcfuser',
-        'PASSWORD': 'dcfkey',
-        'HOST': 'hassv.duckdns.org',
-        'PORT': '3306',
+        'NAME': 'djangoproject',
+        'USER': 'root',
+        'PASSWORD': 'Admin@123',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

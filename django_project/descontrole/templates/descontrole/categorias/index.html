@@ -17,7 +17,7 @@
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Categoria</a></li>
+            <li><a href="{% url 'descontrole:categorias' %}">Categoria</a></li>
             <li><a href="#">Evento</a></li>
             <li><a href="#">Consulta</a></li>
         </ul>
@@ -26,7 +26,8 @@
     <main>
         <section class="form-section">
             <div class="form-container">
-                <form action="", method="post">
+                <form action="{% url 'descontrole:categorias' %}", method="post">
+                    {% csrf_token %}
                     <label for="categoria-id">Categoria ID</label>
                     <input type="text" id="categoria-id" placeholder="10 dígitos - automático" disabled>
 
@@ -37,12 +38,12 @@
                     <textarea name="descricao" id="descricao" maxlength="150" placeholder="150 caracteres"></textarea>
 
                     <p class="error-message">* Categoria não encontrada</p>
+                    <div class="buttons">
+                        <button type="button">Novo</button>
+                        <button type="button">Editar</button>
+                        <button type="button">Deletar</button>
+                    </div>
                 </form>
-                <div class="buttons">
-                    <button type="button">Novo</button>
-                    <button type="button">Editar</button>
-                    <button type="button">Deletar</button>
-                </div>
             </div>
         </section>
         <section class="table-section">
@@ -55,7 +56,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Categorias -->
+                    {% for categoria in categorias %}
+                        <td>{{categoria.id}}</td>
+                        <td>{{categoria.nome}}</td>
+                        <td>{{categoria.descricao}}</td>
+                    {% endfor %}
                 </tbody>
             </table>
             <button type="button" class="export-button">Exportar</button>
