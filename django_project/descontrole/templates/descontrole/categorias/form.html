@@ -34,8 +34,7 @@
                 <td>{{ categoria.descricao }}</td>
                 <td>
                     <a href="{% url 'categoria_update' categoria.id %}" class="btn btn-secondary">Editar</a>
-                    <form method="post" action="{% url 'categoria_delete' categoria.id %}"
-                        style="display:inline;">
+                    <form method="post" action="{% url 'categoria_delete' categoria.id %}" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Deletar</button>
                     </form>
