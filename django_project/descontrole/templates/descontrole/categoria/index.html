@@ -6,21 +6,21 @@
 
 {% block content %}
 <section class="form-section">
-    <div class="card">
-        <div class="card-body">
-            <form method="post" action="{% url 'categoria_create' %}">
+    <div class="form-container">
+        <div class="card">
+            <form action="" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                {{ form }}
+                <button type="submit">Salvar</button>
             </form>
         </div>
     </div>
 </section>
+
 <section class="table-section mt-4">
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Cat ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Ações</th>
@@ -29,7 +29,6 @@
         <tbody>
             {% for categoria in categorias %}
             <tr>
-                <td>{{ categoria.id }}</td>
                 <td>{{ categoria.nome }}</td>
                 <td>{{ categoria.descricao }}</td>
                 <td>
@@ -43,5 +42,6 @@
             {% endfor %}
         </tbody>
     </table>
+    <button type="button" class="export-button">Exportar</button>
 </section>
 {% endblock %}

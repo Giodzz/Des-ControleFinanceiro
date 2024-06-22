@@ -15,25 +15,33 @@
 </head>
 
 <body>
-    <header class="bg-light py-3">
-        <div>
-
-            <ul class="nav nav-tabs justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Categoria</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Evento</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Consulta</a>
-                </li>
-            </ul>
+    <header class="custom-header py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <img src="{% static 'descontrole/images/logo.png' %}" alt="De$-Controle" class="logo">
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav nav-tabs justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'categoria_index' %}">Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'evento_index' %}">Evento</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'consulta_index' %}" tabindex="-1"
+                                aria-disabled="true">Consulta</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </header>
+
     <main>
         {% block content %}
         {% endblock %}

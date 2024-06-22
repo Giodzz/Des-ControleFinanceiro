@@ -4,14 +4,29 @@ from ..forms import CategoriaForm
 
 
 def categoria_index(request):
-    return render(request, "descontrole/categorias/index.html", {})
+    if request.method == "POST":
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(
+                "categoria_index"
+            ) 
+    else:
+        form = CategoriaForm()
+
+    categorias = Categoria.objects.all()
+    return render(
+        request,
+        "descontrole/categoria/index.html",
+        {"form": form, "categorias": categorias},
+    )
 
 
 def categoria_lista(request):
     categorias = Categoria.objects.all()
     return render(
         request,
-        "descontrole/categorias/lista.html",
+        "descontrole/categoria/lista.html",
         {"categorias": categorias},
     )
 
@@ -20,7 +35,7 @@ def categoria_detalhes(request, pk):
     categoria = get_object_or_404(Categoria, pk=pk)
     return render(
         request,
-        "descontrole/categorias/detalhes.html",
+        "descontrole/categoria/detalhes.html",
         {"categoria": categoria},
     )
 
@@ -33,7 +48,7 @@ def categoria_create(request):
             return redirect("categoria_detalhes", pk=categoria.pk)
     else:
         form = CategoriaForm()
-    return render(request, "descontrole/categorias/form.html", {"form": form})
+    return render(request, "descontrole/categoria/form.html", {"form": form})
 
 
 def categoria_update(request, pk):
@@ -45,7 +60,7 @@ def categoria_update(request, pk):
             return redirect("detalhes", pk=categoria.pk)
     else:
         form = CategoriaForm(instance=categoria)
-    return render(request, "descontrole/categorias/form.html", {"form": form})
+    return render(request, "descontrole/categoria/form.html", {"form": form})
 
 
 def categoria_delete(request, pk):
@@ -55,6 +70,6 @@ def categoria_delete(request, pk):
         return redirect("lista")
     return render(
         request,
-        "descontrole/categorias/confirm_delete.html",
+        "descontrole/categoria/confirm_delete.html",
         {"categoria": categoria},
     )
