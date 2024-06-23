@@ -156,3 +156,7 @@ td {
 .export-button:hover {
     background-color: #88b55c;
 }
+
+#edit_btn_group {
+    display: none;
+}

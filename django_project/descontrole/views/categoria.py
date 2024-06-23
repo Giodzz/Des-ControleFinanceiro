@@ -64,10 +64,10 @@ def categoria_update(request, pk):
 
 
 def categoria_delete(request, pk):
-    categoria = get_object_or_404(categoria, pk=pk)
+    categoria = get_object_or_404(Categoria, pk=pk)
     if request.method == "POST":
         categoria.delete()
-        return redirect("lista")
+        return redirect("categoria_index")
     return render(
         request,
         "descontrole/categoria/confirm_delete.html",
