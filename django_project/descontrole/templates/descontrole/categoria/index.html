@@ -35,7 +35,7 @@
                     <div class="edit_btn_group">
                         <a href="{% url 'categoria_update' categoria.id %}" class="btn btn-secondary"
                             id="categoria_edit">Editar</a>
-                        <form method="post" action="{% url 'categoria_delete' categoria.id %}" style="display:inline;">
+                        <form method="post" action="{% url 'categoria_delete' categoria.id %}" style="display:inline;" onsubmit="return confirmarExclusao();">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger" id="categoria_delete">Deletar</button>
                     </div>
@@ -47,4 +47,10 @@
     </table>
     <button type="button" class="export-button">Exportar</button>
 </section>
+
+<script>
+    function confirmarExclusao() {
+        return confirm("Tem certeza que deseja excluir esta categoria?");
+    }
+</script>
 {% endblock %}
