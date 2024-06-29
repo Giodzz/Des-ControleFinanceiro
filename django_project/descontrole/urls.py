@@ -10,6 +10,7 @@ urlpatterns = [
     path("home", views.index, name="index"),
     path("categorias/", views.categoria_index, name="categoria_index"),
     path("categorias/lista/", views.categoria_lista, name="categoria_lista"),
+    path("categorias/export/", views.categoria_export, name="categoria_export"),
     path("categorias/<int:pk>/", views.categoria_detalhes, name="categoria_detalhes"),
     path("categorias/create/", views.categoria_create, name="categoria_create"),
     path(

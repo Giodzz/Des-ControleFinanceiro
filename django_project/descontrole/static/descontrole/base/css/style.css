@@ -1,0 +1,341 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Header */
+
+.custom-header {
+    background-color: #8fc97c;
+}
+
+
+.logo {
+    max-height: 60px;
+}
+
+.nav-tabs {
+    border-bottom: none;
+    flex: 1;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: -1px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #fff;
+    background-color: #8fc97c;
+    border-radius: 0;
+    padding: 10px 20px;
+}
+
+.nav-tabs .nav-link.active {
+    color: #4b7a3c;
+    background-color: #ffffff;
+    border-bottom: 3px solid #4b7a3c;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #4b7a3c;
+    background-color: #ffffff;
+}
+
+.nav-item .nav-link.disabled {
+    color: #ccc;
+}
+
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Form */
+
+.card {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form label {
+    align-self: self-start;
+}
+
+form>button {
+    margin-top: 30px;
+    width: 50%;
+}
+
+.form-section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-export {
+    display: flex;
+    align-items: start;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #99cc66;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #88b55c;
+}
+
+
+.export-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #99cc66;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.export-button:hover {
+    background-color: #88b55c;
+}
+
+
+
+
+/* Table */
+
+.table-fill {
+    border-radius: 3px;
+    border-collapse: collapse;
+    margin: auto;
+    max-width: 600px;
+    padding: 5px;
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background-color: #99cc66;
+    color: white;
+    border-bottom: none;
+    border-right: none;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table> :not(:first-child) {
+    border-top: none;
+}
+
+.thead tr {
+    border-bottom: none;
+}
+
+
+th:first-child {
+    border-top-left-radius: 3px;
+}
+
+th:last-child {
+    border-top-right-radius: 3px;
+    border-right: none;
+}
+
+tr {
+    border-top: none;
+    border-bottom: none;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+tbody {
+    border-top-width: 0px;
+}
+
+.table td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: #c4c4c4;
+    border-top: none;
+}
+
+tr:first-child {
+    border-top: none;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+tr:nth-child(odd) td {
+    background: #EBEBEB;
+}
+
+tr:nth-child(odd):hover td {
+    background: #c4c4c4;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 3px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 3px;
+}
+
+td {
+    background: #FFFFFF;
+    padding: 20px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 18px;
+    border-right: none;
+}
+
+td:last-child {
+    border-right: 0px;
+}
+
+th.text-left {
+    text-align: left;
+}
+
+th.text-center {
+    text-align: center;
+}
+
+th.text-right {
+    text-align: right;
+}
+
+td.text-left {
+    text-align: left;
+}
+
+td.text-center {
+    text-align: center;
+}
+
+td.text-right {
+    text-align: right;
+}
+
+.td-actions .edit-group {
+    visibility: hidden;
+    align-items: center;
+}
+
+#edit-form,
+#delete-form {
+    margin: 0px;
+    margin-left: 5px;
+}
+
+.edit-group {
+    display: flex;
+    align-items: center;
+
+    padding: 5px;
+}
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+tr:hover .td-actions .edit-group {
+    visibility: visible;
+}
+
+.th-actions {
+    width: 1%;
+}
+
+.btn-edit-group a,
+.btn-edit-group form {
+    margin-left: 10px;
+}
+
+.icon-small {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}

@@ -11,36 +11,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'descontrole/base/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'descontrole/base/css/style.css' %}">
 </head>
 
 <body>
-    <header class="custom-header py-3">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-3">
-                    <img src="{% static 'descontrole/images/logo.png' %}" alt="De$-Controle" class="logo">
-                </div>
-                <div class="col-md-9">
-                    <ul class="nav nav-tabs justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'categoria_index' %}">Categoria</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'evento_index' %}">Evento</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'consulta_index' %}" tabindex="-1"
-                                aria-disabled="true">Consulta</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <header class="custom-header py-3 position-relative">
+        <div class="container d-flex justify-content-center">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'categoria_index' %}">Categoria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'evento_index' %}">Evento</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'consulta_index' %}" tabindex="-1"
+                        aria-disabled="true">Consulta</a>
+                </li>
+            </ul>
+            <img src="{% static 'descontrole/images/logo.png' %}" alt="De$-Controle"
+                class="logo position-absolute start-0">
         </div>
     </header>
+
 
     <main>
         {% block content %}
