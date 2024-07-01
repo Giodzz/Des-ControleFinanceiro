@@ -1,9 +1,7 @@
 {% load static %}
-
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +16,12 @@
 
 <body>
     <header class="custom-header py-3 position-relative">
-        <div class="container d-flex justify-content-center">
+        <div class="container d-flex align-items-center justify-content-center ms-2">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'descontrole/base/images/logo.svg' %}" alt="De$-Controle" class="logo start-0 me-4">
+            </a>
             <ul class="nav nav-tabs">
-                <li class="nav-item">
+                <li class="nav-item justify-content-center">
                     <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
                 </li>
                 <li class="nav-item">
@@ -34,11 +35,9 @@
                         aria-disabled="true">Consulta</a>
                 </li>
             </ul>
-            <img src="{% static 'descontrole/images/logo.png' %}" alt="De$-Controle"
-                class="logo position-absolute start-0">
+
         </div>
     </header>
-
 
     <main>
         {% block content %}

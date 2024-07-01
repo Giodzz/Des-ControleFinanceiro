@@ -8,15 +8,16 @@
 <section class="form-section">
     <div class="form-container">
         <div class="card">
-            <form action="{% url 'categoria_create' %}" method="post">
+            <form id="create-form" action="{% url 'categoria_create' %}" method="post">
                 {% csrf_token %}
                 {{ form }}
-                <button type="submit">Salvar</button>
+                <button type="submit" class="save-btn">Salvar</button>
             </form>
         </div>
     </div>
 </section>
 
+<!-- Modals -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -25,38 +26,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    {% for message in messages %}
-                    {{ message }}
-                    {% endfor %}
-                </div>
-                {% endif %}
                 <form id="edit-form" method="post">
                     {% csrf_token %}
                     {{ form }}
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="save-btn">Salvar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="exportErrorModal" tabindex="-1" role="dialog" aria-labelledby="exportErrorModalLabel"
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exportErrorModalLabel">Erro ao Exportar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>{{ error_message }}</p>
+                <p id="errorMessage"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -71,11 +63,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Você tem certeza de que quer deletar essa categoria? Isso removerá a relação com os eventos nessa tag.
+                Você tem certeza de que quer deletar essa categoria? Isso removerá a relação com os eventos registrados.
                 <form id="delete-form" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                    <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Cancelar</button>
                 </form>
             </div>
         </div>
@@ -118,9 +110,8 @@
 
     <form method="get" action="{% url 'categoria_export' %}" id="form-export">
         {% csrf_token %}
-        <button type="submit" class="export-button btn-md">Exportar</button>
+        <button type="submit" class="export-button">Exportar</button>
     </form>
-
 </section>
 
 <script>
@@ -139,11 +130,7 @@
             document.getElementById('nome').value = nome;
             document.getElementById('descricao').value = descricao;
         });
-    });
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
         var deleteModal = document.getElementById('deleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
@@ -153,34 +140,70 @@
             var action = "{% url 'categoria_delete' '9999' %}".replace('9999', id);
             form.action = action;
         });
-
-        var deleteForm = document.getElementById('delete-form');
-        deleteForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            var formData = new FormData(deleteForm);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', deleteForm.action, true);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    var modal = bootstrap.Modal.getInstance(deleteModal);
-                    modal.hide();
-                    location.reload();
-                } else {
-                    alert('Error deleting category');
-                }
-            };
-            xhr.send(formData);
-        });
     });
-</script>
 
-<script>
+    document.getElementById('create-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                location.reload();
+            } else {
+                var response = JSON.parse(xhr.responseText);
+                document.getElementById('errorMessage').innerText = response.error;
+                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
+            }
+        };
+        xhr.send(formData);
+    });
+
+    document.getElementById('edit-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                location.reload();
+            } else {
+                var response = JSON.parse(xhr.responseText);
+                document.getElementById('errorMessage').innerText = response.error;
+                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                errorModal.show();
+            }
+        };
+        xhr.send(formData);
+    });
+
+    document.getElementById('delete-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                location.reload();
+            } else {
+                var response = JSON.parse(xhr.responseText);
+                alert('Erro ao deletar categoria: ' + response.error);
+            }
+        };
+        xhr.send(formData);
+    });
+
     $(document).ready(function () {
         $('#form-export').submit(function (event) {
             event.preventDefault();
             $.get($(this).attr('action'), function (response) {
-
                 if (response.error_message) {
                     $('#exportErrorMessage').text(response.error_message);
                     $('#exportErrorModal').modal('show');
@@ -191,4 +214,5 @@
         });
     });
 </script>
+
 {% endblock %}

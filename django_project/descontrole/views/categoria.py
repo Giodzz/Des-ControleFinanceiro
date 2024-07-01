@@ -25,11 +25,19 @@ def categoria_create(request):
     if request.method == "POST":
         form = CategoriaForm(request.POST)
         if form.is_valid():
-            categoria = form.save()
-            return redirect("categoria_index")
-    else:
-        form = CategoriaForm()
-    return render(request, "descontrole/categoria/form_invalido.html", {"form": form})
+            nome = form.cleaned_data.get("nome")
+            if Categoria.objects.filter(nome=nome).exists():
+                messages.error(request, "Categoria já existe.")
+                return JsonResponse({"error": "Categoria já existe."}, status=400)
+            form.save()
+            messages.success(request, "Categoria criada.")
+            return JsonResponse({"success": "Categoria criada."}, status=201)
+        else:
+            messages.error(request, "Não foi possível criar a categoria.")
+            return JsonResponse(
+                {"error": "Não foi possível criar a categoria."}, status=400
+            )
+    return redirect("categoria_index")
 
 
 def categoria_update(request, pk):
@@ -37,13 +45,19 @@ def categoria_update(request, pk):
     if request.method == "POST":
         form = CategoriaForm(request.POST, instance=categoria)
         if form.is_valid():
+            nome = form.cleaned_data.get("nome")
+            if Categoria.objects.filter(nome=nome).exclude(pk=pk).exists():
+                messages.error(request, "Categoria já existe.")
+                return JsonResponse({"error": "Categoria já existe."}, status=400)
             form.save()
             messages.success(request, "Categoria atualizada com sucesso.")
-            return redirect("categoria_index")
+            return JsonResponse(
+                {"success": "Categoria atualizada com sucesso."}, status=200
+            )
         else:
-            messages.error(
-                request,
-                "Não foi possível salvar a categoria.",
+            messages.error(request, "Não foi possível salvar a categoria.")
+            return JsonResponse(
+                {"error": "Não foi possível salvar a categoria."}, status=400
             )
     return redirect("categoria_index")
 

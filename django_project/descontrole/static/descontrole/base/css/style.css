@@ -11,7 +11,6 @@ body {
     background-color: #8fc97c;
 }
 
-
 .logo {
     max-height: 60px;
 }
@@ -48,7 +47,6 @@ body {
 .nav-item .nav-link.disabled {
     color: #ccc;
 }
-
 
 nav ul {
     list-style-type: none;
@@ -165,28 +163,24 @@ button {
     box-shadow: none;
 }
 
-
 button:hover {
     background-color: #88b55c;
 }
 
-
 .export-button {
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #99cc66;
     border: none;
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    align-self: flex-start;
 }
 
 .export-button:hover {
     background-color: #88b55c;
 }
-
-
-
 
 /* Table */
 
@@ -220,7 +214,6 @@ button:hover {
     border-bottom: none;
 }
 
-
 th:first-child {
     border-top-left-radius: 3px;
 }
@@ -236,7 +229,6 @@ tr {
     font-size: 16px;
     font-weight: normal;
 }
-
 
 tbody {
     border-top-width: 0px;
@@ -327,7 +319,6 @@ td.text-right {
 .edit-group {
     display: flex;
     align-items: center;
-
     padding: 5px;
 }
 
@@ -335,6 +326,16 @@ td.text-right {
 .delete-btn {
     background: none;
     border: none;
+    cursor: pointer;
+}
+
+.save-btn {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #6fa859;
+    border: none;
+    border-radius: 4px;
+    color: white;
     cursor: pointer;
 }
 
