@@ -1,6 +1,7 @@
 {% extends "../base/base.html" %}
 
 {% block title %}Categorias{% endblock %}
+
 {% load static %}
 
 {% block content %}
@@ -15,6 +16,71 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form id="edit-form" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exportErrorModal" tabindex="-1" role="dialog" aria-labelledby="exportErrorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exportErrorModalLabel">Erro ao Exportar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{ error_message }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmar deleção</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Você tem certeza de que quer deletar essa categoria? Isso removerá a relação com os eventos nessa tag.
+                <form id="delete-form" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <section class="table-section mt-4">
     <table class="table">
@@ -32,26 +98,20 @@
                 <td class="td-desc">{{ categoria.descricao }}</td>
                 <td class="td-actions">
                     <div class="edit-group">
-                        <form method="post" action="{% url 'categoria_update' categoria.id %}" id="edit-form">
-                            {% csrf_token %}
-                            <a href="#" onclick="document.getElementById('edit-form').submit(); return false;"
-                                class="edit-btn">
-                                <img src="{% static 'descontrole/base/images/edit.png' %}" alt="Editar"
-                                    class="icon-small">
-                            </a>
-                        </form>
-                        <form method="post" action="{% url 'categoria_delete' categoria.id %}" id="delete-form">
-                            {% csrf_token %}
-                            <a href="#" onclick="document.getElementById('delete-form').submit(); return false;"
-                                class="delete-btn">
-                                <img src="{% static 'descontrole/base/images/delete.png' %}" alt="Deletar"
-                                    class="icon-small">
-                            </a>
-                        </form>
+                        <button type="button" class="edit-btn no-style-btn" data-bs-toggle="modal"
+                            data-bs-target="#editModal" data-id="{{ categoria.id }}" data-nome="{{ categoria.nome }}"
+                            data-descricao="{{ categoria.descricao }}">
+                            <img src="{% static 'descontrole/base/images/edit.png' %}" alt="Editar" class="icon-small">
+                        </button>
+                        <button type="button" class="delete-btn no-style-btn" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" data-id="{{ categoria.id }}">
+                            <img src="{% static 'descontrole/base/images/delete.png' %}" alt="Deletar"
+                                class="icon-small">
+                        </button>
                     </div>
                 </td>
             </tr>
-
+            {% empty %}
             {% endfor %}
         </tbody>
     </table>
@@ -62,5 +122,73 @@
     </form>
 
 </section>
-<script src="{% static 'descontrole/base/js/confirm-deletion.js' %}" type="text/javascript"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var editModal = document.getElementById('editModal');
+        editModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var id = button.getAttribute('data-id');
+            var nome = button.getAttribute('data-nome');
+            var descricao = button.getAttribute('data-descricao');
+
+            var form = editModal.querySelector('form');
+            var action = "{% url 'categoria_update' '9999' %}".replace('9999', id);
+            form.action = action;
+
+            document.getElementById('nome').value = nome;
+            document.getElementById('descricao').value = descricao;
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var id = button.getAttribute('data-id');
+
+            var form = deleteModal.querySelector('form');
+            var action = "{% url 'categoria_delete' '9999' %}".replace('9999', id);
+            form.action = action;
+        });
+
+        var deleteForm = document.getElementById('delete-form');
+        deleteForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(deleteForm);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', deleteForm.action, true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    var modal = bootstrap.Modal.getInstance(deleteModal);
+                    modal.hide();
+                    location.reload();
+                } else {
+                    alert('Error deleting category');
+                }
+            };
+            xhr.send(formData);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#form-export').submit(function (event) {
+            event.preventDefault();
+            $.get($(this).attr('action'), function (response) {
+
+                if (response.error_message) {
+                    $('#exportErrorMessage').text(response.error_message);
+                    $('#exportErrorModal').modal('show');
+                } else {
+                    $('#form-export').unbind('submit').submit();
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

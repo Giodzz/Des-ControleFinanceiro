@@ -149,6 +149,23 @@ button {
     cursor: pointer;
 }
 
+.no-style-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.no-style-btn:hover,
+.no-style-btn:focus {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+
 button:hover {
     background-color: #88b55c;
 }
