@@ -7,3 +7,5 @@ python-decouple==3.8
 pytz==2024.1
 soupsieve==2.5
 sqlparse==0.5.0
+pandas==2.2.2
+reportlab==4.2.2

@@ -175,7 +175,7 @@ button:hover {
     border-radius: 4px;
     color: white;
     cursor: pointer;
-    align-self: flex-start;
+    align-self: center;
 }
 
 .export-button:hover {
