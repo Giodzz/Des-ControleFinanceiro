@@ -3,4 +3,4 @@ from ..forms.evento import EventoForm
 
 def evento_index(request):
     form = EventoForm()
-    return render(request, "descontrole/evento/index.html")
+    return render(request, "descontrole/evento/index.html", {"form": form})

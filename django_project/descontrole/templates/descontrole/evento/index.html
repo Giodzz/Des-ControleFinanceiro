@@ -4,7 +4,15 @@
 {% load static %}
 
 {% block content %}
-<body>
-    
-</body>
+<section class="form-section">
+    <div class="form-container">
+        <div class="card">
+            <form id="create-form" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="save-btn">Salvar</button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}
