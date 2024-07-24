@@ -112,6 +112,8 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
 
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

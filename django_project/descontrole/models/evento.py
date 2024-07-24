@@ -23,4 +23,4 @@ class Evento(models.Model):
         return str(self.id)
 
     class Meta:
-        app_label = 'descontrole'
+        app_label = "descontrole"
