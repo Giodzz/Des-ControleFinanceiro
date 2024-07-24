@@ -7,12 +7,60 @@
 <section class="form-section">
     <div class="form-container">
         <div class="card">
-            <form id="create-form" method="post">
+            <form id="create-form" action="" method="post">
                 {% csrf_token %}
                 {{ form }}
                 <button type="submit" class="save-btn">Salvar</button>
             </form>
         </div>
     </div>
+</section>
+
+<section class="table-section mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Natureza</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Descrição</th>
+                <th scope="col" class="th-actions"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evento in eventos %}
+            <tr>
+                <td class="td-nome">{{ evento.data }}</td>
+                <td class="td-desc">{{ evento.natureza }}</td>
+                <td class="td-desc">{{ evento.tipo }}</td>
+                <td class="td-desc">{{ evento.categoria }}</td>
+                <td class="td-desc">{{ evento.valor }}</td>
+                <td class="td-desc">{{ evento.descricao }}</td>
+                <td class="td-actions">
+                    <div class="edit-group">
+                        <!-- <button type="button" class="edit-btn no-style-btn" data-bs-toggle="modal"
+                            data-bs-target="#editModal" data-id="{{ categoria.id }}" data-nome="{{ categoria.nome }}"
+                            data-descricao="{{ categoria.descricao }}">
+                            <img src="{% static 'descontrole/base/images/edit.png' %}" alt="Editar" class="icon-small">
+                        </button>
+                        <button type="button" class="delete-btn no-style-btn" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" data-id="{{ categoria.id }}">
+                            <img src="{% static 'descontrole/base/images/delete.png' %}" alt="Deletar"
+                                class="icon-small">
+                        </button> -->
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="get" action="" id="form-export">
+        {% csrf_token %}
+        <button type="submit" class="export-button">Exportar</button>
+    </form>
 </section>
 {% endblock %}
