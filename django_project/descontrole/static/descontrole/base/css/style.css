@@ -357,3 +357,18 @@ tr:hover .td-actions .edit-group {
     height: auto;
     margin-right: 5px;
 }
+
+.form-select {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    font-size: 16px;
+}
+
+option {
+    padding: 10px;
+}

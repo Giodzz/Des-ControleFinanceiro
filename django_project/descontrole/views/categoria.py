@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from ..models import Categoria
 from django.contrib import messages
@@ -37,7 +37,6 @@ def categoria_create(request):
             return JsonResponse(
                 {"error": "Não foi possível criar a categoria."}, status=400
             )
-    return redirect("categoria_index")
 
 
 def categoria_update(request, pk):
@@ -59,7 +58,6 @@ def categoria_update(request, pk):
             return JsonResponse(
                 {"error": "Não foi possível salvar a categoria."}, status=400
             )
-    return redirect("categoria_index")
 
 
 def categoria_delete(request, pk):
@@ -69,7 +67,6 @@ def categoria_delete(request, pk):
         messages.success(request, "Categoria deletada com sucesso.")
         if request.is_ajax():
             return JsonResponse({"success": True})
-        return redirect("categoria_index")
     return JsonResponse({"success": False}, status=400)
 
 
