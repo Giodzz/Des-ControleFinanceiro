@@ -34,8 +34,14 @@ def evento_update(request):
     pass
 
 #TODO
-def evento_delete(request):
-    pass
+def evento_delete(request, pk):
+    evento = get_object_or_404(Evento, pk=pk)
+    if request.method == "POST":
+        evento.delete()
+        messages.success(request, "Categoria deletada com sucesso.")
+        if request.is_ajax():
+            return JsonResponse({"success": True})
+    return JsonResponse({"success": False}, status=400)
 
 #TODO
 def evento_export(request):
