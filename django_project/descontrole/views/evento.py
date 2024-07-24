@@ -38,7 +38,7 @@ def evento_delete(request, pk):
     evento = get_object_or_404(Evento, pk=pk)
     if request.method == "POST":
         evento.delete()
-        messages.success(request, "Categoria deletada com sucesso.")
+        messages.success(request, "Evento deletado com sucesso.")
         if request.is_ajax():
             return JsonResponse({"success": True})
     return JsonResponse({"success": False}, status=400)
