@@ -29,3 +29,14 @@ def evento_create(request):
                 {"error": "Não foi possível criar a evento."}, status=400
             )
     
+# TODO
+def evento_update(request):
+    pass
+
+#TODO
+def evento_delete(request):
+    pass
+
+#TODO
+def evento_export(request):
+    pass
