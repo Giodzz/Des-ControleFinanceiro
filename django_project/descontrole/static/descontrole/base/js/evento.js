@@ -1,3 +1,31 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // var editModal = document.getElementById('editModal');
+    // editModal.addEventListener('show.bs.modal', function (event) {
+    //     var button = event.relatedTarget;
+    //     var id = button.getAttribute('data-id');
+    //     var data = button.getAttribute('data-data');
+    //     var descricao = button.getAttribute('data-descricao');
+
+    //     var form = editModal.querySelector('form');
+    //     var action = BASE_URL.replace('9999', id)
+    //     form.action = action;
+
+    //     document.getElementById('id_nome').value = nome;
+    //     document.getElementById('id_descricao').value = descricao;
+    // });
+
+    var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-id');
+
+        var form = deleteModal.querySelector('form');
+        var action = DELETE_URL.replace('9999', id);
+        form.action = action;
+    });
+});
+
+
 $(function () {
     $('#id_data').datepicker({
         dateFormat: "dd/mm/yy",

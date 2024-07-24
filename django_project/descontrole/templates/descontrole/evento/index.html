@@ -102,5 +102,10 @@
         <button type="submit" class="export-button">Exportar</button>
     </form>
 </section>
+
+<script>
+    var BASE_URL = "{% url 'evento_update' '9999' %}";
+    var DELETE_URL = "{% url 'evento_delete' '9999' %}";
+</script>
 <script src="{% static 'descontrole/base/js/evento.js' %}"></script>
 {% endblock %}
