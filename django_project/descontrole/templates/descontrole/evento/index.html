@@ -16,6 +16,63 @@
     </div>
 </section>
 
+<!-- Modals -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" class="save-btn">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmar deleção</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Você tem certeza de que quer deletar essa categoria? Isso removerá a relação com os eventos registrados.
+                <form id="delete-form" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                    <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="table-section mt-4">
     <table class="table">
         <thead>
@@ -40,16 +97,16 @@
                 <td class="td-desc">{{ evento.descricao }}</td>
                 <td class="td-actions">
                     <div class="edit-group">
-                        <!-- <button type="button" class="edit-btn no-style-btn" data-bs-toggle="modal"
-                            data-bs-target="#editModal" data-id="{{ categoria.id }}" data-nome="{{ categoria.nome }}"
-                            data-descricao="{{ categoria.descricao }}">
+                        <button type="button" class="edit-btn no-style-btn" data-bs-toggle="modal"
+                            data-bs-target="#editModal" data-id="{{ evento.id }}" data-data="{{ evento.data }}"
+                            data-descricao="{{ evento.descricao }}">
                             <img src="{% static 'descontrole/base/images/edit.png' %}" alt="Editar" class="icon-small">
                         </button>
                         <button type="button" class="delete-btn no-style-btn" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal" data-id="{{ categoria.id }}">
+                            data-bs-target="#deleteModal" data-id="{{ evento.id }}">
                             <img src="{% static 'descontrole/base/images/delete.png' %}" alt="Deletar"
                                 class="icon-small">
-                        </button> -->
+                        </button>
                     </div>
                 </td>
             </tr>
