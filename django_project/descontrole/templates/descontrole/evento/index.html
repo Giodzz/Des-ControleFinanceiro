@@ -7,7 +7,7 @@
 <section class="form-section">
     <div class="form-container">
         <div class="card">
-            <form id="create-form" action="" method="post">
+            <form id="create-form" action="{% url 'evento_create' %}" method="post">
                 {% csrf_token %}
                 {{ form }}
                 <button type="submit" class="save-btn">Salvar</button>
