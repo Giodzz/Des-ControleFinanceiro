@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from ..forms.evento import EventoForm
 from ..models.evento import Evento
+from django.contrib import messages
+from django.http import JsonResponse
 
 def evento_index(request):
     form = EventoForm()
