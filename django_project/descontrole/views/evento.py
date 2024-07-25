@@ -29,9 +29,9 @@ def evento_create(request):
             return JsonResponse({"success": "Evento salvo."}, status=201)
 
         else:
-            messages.error(request, "Não foi possível criar evento.")
+            messages.error(request, "Não foi possível criar o evento.")
             return JsonResponse(
-                {"error": "Não foi possível criar a evento."}, status=400
+                {"error": "Não foi possível criar o evento."}, status=400
             )
 
 
@@ -40,19 +40,15 @@ def evento_update(request, pk):
     if request.method == "POST":
         form = EventoForm(request.POST, instance=evento)
         if form.is_valid():
-            nome = form.cleaned_data.get("nome")
-            if Evento.objects.filter(nome=nome).exclude(pk=pk).exists():
-                messages.error(request, "Evento já existe.")
-                return JsonResponse({"error": "Evento já existe."}, status=400)
             form.save()
-            messages.success(request, "Evento atualizada com sucesso.")
+            messages.success(request, "Evento atualizado com sucesso.")
             return JsonResponse(
-                {"success": "Evento atualizada com sucesso."}, status=200
+                {"success": "Evento atualizado com sucesso."}, status=200
             )
         else:
-            messages.error(request, "Não foi possível salvar a Evento.")
+            messages.error(request, "Não foi possível salvar o Evento.")
             return JsonResponse(
-                {"error": "Não foi possível salvar a Evento."}, status=400
+                {"error": "Não foi possível salvar o Evento."}, status=400
             )
 
 
