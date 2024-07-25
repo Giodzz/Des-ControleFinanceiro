@@ -1,10 +1,8 @@
 {% extends "../base/base.html" %}
-
 {% block title %}Categorias{% endblock %}
-
 {% load static %}
-
 {% block content %}
+
 <section class="form-section">
     <div class="form-container">
         <div class="card">
@@ -115,12 +113,9 @@
 </section>
 
 <script>
-    var BASE_URL = "{% url 'categoria_update' '9999' %}";
+    var UPDATE_URL = "{% url 'categoria_update' '9999' %}";
     var DELETE_URL = "{% url 'categoria_delete' '9999' %}";
 </script>
 <script src="{% static 'descontrole/base/js/categoria.js' %}"></script>
-
-
-
 
 {% endblock %}

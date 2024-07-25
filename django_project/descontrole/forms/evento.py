@@ -7,7 +7,6 @@ from datetime import datetime
 class EventoForm(forms.ModelForm):
     natureza = forms.ChoiceField(
         choices=NaturezaEnum.choices(),
-        widget=forms.Select(attrs={"placeholder": "TESTE"}),
         required=True,
     )
     tipo = forms.ChoiceField(choices=TipoEnum.choices())
@@ -24,7 +23,11 @@ class EventoForm(forms.ModelForm):
         kwargs["label_suffix"] = ""
         super().__init__(*args, **kwargs)
         for vf in self.visible_fields():
-            vf.field.widget.attrs["class"] = "form-control"
+            value = vf.field.widget.attrs.get("class", "")
+            vf.field.widget.attrs.update(
+                {"class": value.join(" form-control").lstrip()}
+            )
+        self.fields["data"].widget.attrs.update({"class": "datepicker form-control"})
 
     class Meta:
         model = Evento
