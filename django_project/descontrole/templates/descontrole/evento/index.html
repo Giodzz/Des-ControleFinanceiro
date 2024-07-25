@@ -21,7 +21,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Editar Categoria</h5>
+                <h5 class="modal-title" id="editModalLabel">Editar Evento</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -44,7 +44,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Você tem certeza de que quer deletar essa categoria? Isso removerá a relação com os eventos registrados.
+                Você tem certeza que quer deletar esse evento?
                 <form id="delete-form" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Deletar</button>
@@ -71,7 +71,7 @@
         <tbody>
             {% for evento in eventos %}
             <tr>
-                <td class="td-nome">{{ evento.data }}</td>
+                <td class="td-nome">{{ evento.data|date:"d/m/Y" }}</td>
                 <td class="td-desc">{{ evento.natureza }}</td>
                 <td class="td-desc">{{ evento.tipo }}</td>
                 <td class="td-desc">{{ evento.categoria }}</td>
